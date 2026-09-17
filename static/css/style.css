@@ -1,0 +1,494 @@
+/* =========================
+   General
+========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Georgia, "Times New Roman", serif;
+  background-color: #1e1e1e;
+  color: #171717;
+}
+
+
+/* =========================
+ Hotel page
+========================= */
+
+.hotel-page {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ffffff;
+
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* =========================
+ Header
+========================= */
+
+.header {
+  width: 100%;
+  height: 90px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 20px 55px;
+
+  border-bottom: 1px solid #eeeeee;
+}
+
+
+/* Logo */
+
+.logo {
+  text-decoration: none;
+  color: #171717;
+}
+
+.logo-box {
+  width: 58px;
+  height: 58px;
+
+  background-color: #f7f3ed;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+}
+
+.logo-j {
+  font-size: 28px;
+  font-weight: normal;
+  line-height: 22px;
+}
+
+.logo-text-small {
+  font-family: Arial, sans-serif;
+  font-size: 6px;
+  letter-spacing: 1px;
+}
+
+
+/* Hotel name */
+
+.hotel-name {
+  margin-left: 18px;
+
+  font-size: 23px;
+  font-weight: bold;
+
+  color: #783d35;
+}
+
+
+/* Navigation */
+
+.navigation {
+  margin-left: auto;
+
+  display: flex;
+  gap: 7px;
+
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.navigation a {
+  color: #171717;
+  text-decoration: none;
+}
+
+.navigation a:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================
+ Main
+========================= */
+
+.main-content {
+  width: 100%;
+  max-width: 700px;
+
+  margin: 70px auto 0;
+
+  padding: 0 30px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* Title */
+
+.main-content h1 {
+  font-size: 15px;
+  font-weight: bold;
+
+  margin-bottom: 18px;
+}
+
+
+/* =========================
+ Date inputs
+========================= */
+
+.date-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  gap: 10px;
+
+  margin-bottom: 15px;
+}
+
+
+.input-box {
+  position: relative;
+}
+
+
+.input-box input {
+  width: 100%;
+  height: 48px;
+
+  border: none;
+
+  background-color: #dddddd;
+
+  padding: 0 15px;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 13px;
+
+  cursor: pointer;
+}
+
+
+.input-box input:focus {
+  outline: 2px solid #783d35;
+}
+
+
+/* =========================
+ Select boxes
+========================= */
+
+.select-box {
+  width: 100%;
+  height: 48px;
+
+  margin-bottom: 15px;
+
+  position: relative;
+}
+
+
+.select-box select {
+  width: 100%;
+  height: 48px;
+
+  border: none;
+
+  background-color: #dddddd;
+
+  padding: 0 15px;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 13px;
+
+  appearance: none;
+
+  cursor: pointer;
+}
+
+
+.select-box::after {
+  content: "⌄";
+
+  position: absolute;
+
+  right: 15px;
+  top: 13px;
+
+  font-size: 18px;
+
+  pointer-events: none;
+}
+
+
+.select-box select:focus {
+  outline: 2px solid #783d35;
+}
+
+
+/* =========================
+ Search button
+========================= */
+
+.search-button {
+  width: 95px;
+  height: 40px;
+
+  margin: 7px auto 0;
+
+  border: none;
+
+  background-color: #dddddd;
+
+  color: #171717;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 13px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+
+.search-button:hover {
+  background-color: #783d35;
+  color: white;
+}
+
+
+.search-button:active {
+  transform: scale(0.97);
+}
+
+
+/* =========================
+ Footer
+========================= */
+
+.footer {
+  margin-top: auto;
+
+  padding: 25px 45px;
+}
+
+
+.language-button {
+  border: none;
+
+  background: transparent;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 12px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+
+.language-button:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================
+ Responsive
+========================= */
+
+@media (max-width: 600px) {
+
+  .header {
+      height: 80px;
+
+      padding: 15px 20px;
+  }
+
+  .logo-box {
+      width: 50px;
+      height: 50px;
+  }
+
+  .logo-j {
+      font-size: 24px;
+  }
+
+  .hotel-name {
+      font-size: 18px;
+      margin-left: 12px;
+  }
+
+  .navigation {
+      font-size: 11px;
+  }
+
+  .main-content {
+      margin-top: 55px;
+
+      padding: 0 20px;
+  }
+
+  .date-container {
+      gap: 8px;
+  }
+
+  .input-box input,
+  .select-box,
+  .select-box select {
+      height: 45px;
+  }
+
+  .footer {
+      padding: 20px;
+  }
+}
+/* =========================
+   Login & Register
+========================= */
+
+.auth-container {
+  width: 100%;
+  max-width: 420px;
+
+  margin: 70px auto 0;
+
+  padding: 0 25px;
+}
+
+.auth-container h1 {
+  font-size: 22px;
+  margin-bottom: 30px;
+}
+
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.auth-form label {
+  font-size: 13px;
+  font-weight: bold;
+
+  margin-bottom: 7px;
+}
+
+
+.auth-form input {
+  width: 100%;
+  height: 45px;
+
+  border: none;
+
+  background-color: #dddddd;
+
+  padding: 0 14px;
+
+  margin-bottom: 18px;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 13px;
+}
+
+
+.auth-form input:focus {
+  outline: 2px solid #783d35;
+}
+
+
+.auth-button {
+  width: 100%;
+  height: 45px;
+
+  border: none;
+
+  background-color: #dddddd;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 13px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  margin-top: 5px;
+
+  transition: 0.2s;
+}
+
+
+.auth-button:hover {
+  background-color: #783d35;
+  color: white;
+}
+
+
+.auth-link {
+  text-align: center;
+
+  margin-top: 25px;
+
+  font-size: 13px;
+}
+
+
+.auth-link a {
+  color: #783d35;
+
+  font-weight: bold;
+
+  text-decoration: none;
+}
+
+
+.auth-link a:hover {
+  text-decoration: underline;
+}
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+/* =========================
+   Form rows
+========================= */
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.form-row .form-group {
+  width: 100%;
+}
+
+
+/* =========================
+   Responsive form
+========================= */
+
+@media (max-width: 600px) {
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+}
