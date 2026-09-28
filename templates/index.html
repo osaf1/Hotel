@@ -107,30 +107,28 @@
             </div>
 
 
-            <!-- Search button -->
-            <button
-                type="button"
-                class="search-button"
-                onclick="searchRooms()"
-            >
-                Search
-            </button>
+             <!-- Search button -->
+       <button
+         type="button"
+         class="search-button"
+         onclick="searchRooms()">
+         Search
+        </button>
 
-        </main>
+     </main>
 
 
         <!-- Footer -->
         <footer class="footer">
 
-            <button class="language-button" onclick="changeLanguage()">
-                EN
-            </button>
+           
+        {% include 'footer.html' %}
 
         </footer>
 
     </div>
 
-
+    
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
 </body>

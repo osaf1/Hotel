@@ -43,39 +43,41 @@
 
         <h1>Sign in</h1>
 
-        <form class="auth-form">
-
-            <label for="email">
-                Email
-            </label>
-
-            <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Enter your email"
-                required
-            >
-
-
-            <label for="password">
-                Password
-            </label>
-
-            <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Enter your password"
-                required
-            >
-
-
-            <button type="submit" class="auth-button">
-                Sign in
-            </button>
-
-        </form>
+        <form
+        action="{{ url_for('login', room_id=room_id) }}"
+        method="POST"
+        class="auth-form"
+    >
+    
+        <input
+            type="hidden"
+            name="room_id"
+            value="{{ room_id }}"
+        >
+    
+        <!-- email -->
+        <label for="email">Email</label>
+        <input
+            type="email"
+            id="email"
+            name="email"
+            required
+        >
+    
+        <!-- password -->
+        <label for="password">Password</label>
+        <input
+            type="password"
+            id="password"
+            name="password"
+            required
+        >
+    
+        <button type="submit" class="auth-button">
+            Sign in
+        </button>
+    
+    </form>
 
 
         <p class="auth-link">
@@ -89,9 +91,7 @@
     <!-- Footer -->
     <footer class="footer">
 
-        <button class="language-button">
-            EN
-        </button>
+        {% include 'footer.html' %}
 
     </footer>
 

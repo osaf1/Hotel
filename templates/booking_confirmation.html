@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Booking Confirmed - Jarir Hotel</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="hotel-page">
+
+    <!-- Header -->
+    <header class="header">
+
+        <a href="{{ url_for('home') }}" class="logo">
+            <div class="logo-box">
+                <div class="logo-j">J</div>
+                <div class="logo-text-small">JARIR HOTEL</div>
+            </div>
+        </a>
+
+        <div class="hotel-name">
+            Jarir Hotel
+        </div>
+
+        <nav class="navigation">
+            <a href="{{ url_for('register') }}">Join</a>
+            <span>|</span>
+            <a href="{{ url_for('login') }}">Sign in</a>
+        </nav>
+
+    </header>
+
+
+    <!-- Booking Confirmation -->
+    <form action="{{ url_for('booking_confirmation') }}" method="POST">
+
+      <input type="hidden" name="room_id" value="{{ room_id }}">
+      <input type="hidden" name="checkin" value="{{ checkin }}">
+      <input type="hidden" name="checkout" value="{{ checkout }}">
+      <input type="hidden" name="guests" value="{{ guests }}">
+      <input type="hidden" name="rooms" value="{{ rooms }}">
+  
+      <button type="submit" class="booking-button">
+          Confirm Booking
+      </button>
+  
+  </form>
+    <main class="booking-confirmation-container">
+
+        <div class="booking-confirmation-box">
+
+            <div class="booking-success-icon">
+                ✓
+            </div>
+
+            <h1>Booking Confirmed</h1>
+
+            <p class="booking-success-text">
+                Your room has been successfully booked.
+            </p>
+
+
+            <!-- Booking details -->
+            <div class="booking-details">
+
+                <div class="booking-detail">
+                    <span>Room</span>
+                    <strong>{{ room.room_type }}</strong>
+                </div>
+
+                <div class="booking-detail">
+                    <span>Room number</span>
+                    <strong>{{ room.room_number }}</strong>
+                </div>
+
+                <div class="booking-detail">
+                    <span>Check in</span>
+                    <strong>{{ checkin }}</strong>
+                </div>
+
+                <div class="booking-detail">
+                    <span>Check out</span>
+                    <strong>{{ checkout }}</strong>
+                </div>
+
+                <div class="booking-detail">
+                    <span>Guests</span>
+                    <strong>{{ guests }}</strong>
+                </div>
+
+            </div>
+
+
+            <p class="booking-thank-you">
+                Thank you for choosing Jarir Hotel.
+                We look forward to welcoming you.
+            </p>
+
+
+            <a href="{{ url_for('home') }}"
+               class="confirmation-button">
+                Back to Home
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        {% include 'footer.html' %}
+    </footer>
+
+</div>
+
+</body>
+</html>

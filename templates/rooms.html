@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rooms - Jarir Hotel</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="rooms-page">
+
+    <!-- =========================
+         Header
+    ========================== -->
+    <header class="header">
+
+        <!-- Logo -->
+        <a href="{{ url_for('home') }}" class="logo">
+
+            <div class="logo-box">
+
+                <span class="logo-j">J</span>
+
+                <span class="logo-text-small">
+                    JARIR
+                </span>
+
+                <span class="logo-text-small">
+                    HOTEL
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <!-- Hotel name -->
+        <div class="hotel-name">
+            Jarir Hotel
+        </div>
+
+
+        <!-- Navigation -->
+        <nav class="navigation">
+
+            {% if session.get("logged_in") %}
+
+                <span>
+                    Hello, {{ session.get("user_name") }}
+                </span>
+
+                <span>|</span>
+
+                <a href="{{ url_for('logout') }}">
+                    Sign out
+                </a>
+
+            {% else %}
+
+                <a href="{{ url_for('register') }}">
+                    Join
+                </a>
+
+                <span>|</span>
+
+                <a href="{{ url_for('login') }}">
+                    Sign in
+                </a>
+
+            {% endif %}
+
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         Rooms
+    ========================== -->
+
+    <main class="rooms-container">
+
+        <h1>Available Rooms</h1>
+
+
+        <div class="rooms-grid">
+
+            {% for room in rooms %}
+
+            <div class="room-card">
+
+
+                <!-- =========================
+                     Main Room Image
+                ========================== -->
+
+                <div class="room-main-image">
+
+                    {% if room.image1 %}
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='images/' + room.image1
+                            ) }}"
+                            alt="{{ room.room_type }}"
+                            onclick="openImage(this.src)"
+                        >
+
+                    {% else %}
+
+                        <div class="no-room-image">
+                            No image available
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- =========================
+                     Room Thumbnails
+                ========================== -->
+
+                <div class="room-thumbnails">
+
+                    {% if room.image1 %}
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='images/' + room.image1
+                            ) }}"
+                            alt="{{ room.room_type }}"
+                            onclick="changeRoomImage(this)"
+                        >
+
+                    {% endif %}
+
+
+                    {% if room.image2 %}
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='images/' + room.image2
+                            ) }}"
+                            alt="{{ room.room_type }}"
+                            onclick="changeRoomImage(this)"
+                        >
+
+                    {% endif %}
+
+
+                    {% if room.image3 %}
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='images/' + room.image3
+                            ) }}"
+                            alt="{{ room.room_type }}"
+                            onclick="changeRoomImage(this)"
+                        >
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- =========================
+                     Room Information
+                ========================== -->
+
+                <div class="room-info">
+
+
+                    <!-- Room type -->
+                    <h2>
+                        {{ room.room_type }}
+                    </h2>
+
+
+                    <!-- Room number -->
+                    <p class="room-number">
+                        Room {{ room.room_number }}
+                    </p>
+
+
+                    <!-- Description -->
+                    <p class="room-description">
+                        {{ room.description }}
+                    </p>
+
+
+                    <!-- Bottom section -->
+                    <div class="room-bottom">
+
+
+                        <!-- Price -->
+                        <div class="room-price">
+
+                            €{{ room.price }}
+
+                            <span>
+                                per night
+                            </span>
+
+                        </div>
+
+
+                        <!-- Book -->
+                        <a
+                            href="{{ url_for(
+                                'booking',
+                                room_id=room.id
+                            ) }}"
+                            class="book-button"
+                        >
+                            Book
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         Image Zoom
+    ========================== -->
+
+    <div
+        id="imageModal"
+        class="image-modal"
+        onclick="closeImage()"
+    >
+
+        <span class="close-image">
+            &times;
+        </span>
+
+        <img
+            id="zoomedImage"
+            src=""
+            alt="Room"
+        >
+
+    </div>
+
+
+    <!-- =========================
+         Footer
+    ========================== -->
+
+    <footer class="footer">
+
+        {% include 'footer.html' %}
+
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script src="{{ url_for(
+        'static',
+        filename='js/script.js'
+    ) }}"></script>
+
+</body>
+
+</html>

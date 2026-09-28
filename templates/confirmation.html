@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Confirmation - Jarir Hotel</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="hotel-page">
+
+    <!-- Header -->
+    <header class="header">
+
+        <a href="{{ url_for('home') }}" class="logo">
+            <div class="logo-box">
+                <div class="logo-j">J</div>
+                <div class="logo-text-small">JARIR HOTEL</div>
+            </div>
+        </a>
+
+        <div class="hotel-name">
+            Jarir Hotel
+        </div>
+
+        <nav class="navigation">
+            <a href="{{ url_for('register') }}">Join</a>
+            <span>|</span>
+            <a href="{{ url_for('login') }}">Sign in</a>
+        </nav>
+
+    </header>
+
+
+    <!-- Confirmation -->
+    <main class="confirmation-container">
+
+        <div class="confirmation-box">
+
+            <div class="confirmation-icon">
+                ✓
+            </div>
+
+            <h1>Thank you!</h1>
+
+            <h2>Your account has been created successfully.</h2>
+
+            <p>
+                Welcome to Jarir Hotel.
+                Your information has been successfully registered.
+            </p>
+            <h1>Booking Confirmed</h1>
+
+<p>Your room has been successfully booked.</p>
+
+<p>Booking number: {{ booking_id }}</p>
+
+<p>Room: {{ room.room_type }}</p>
+
+<p>Room number: {{ room.room_number }}</p>
+
+<p>Check-in: {{ checkin }}</p>
+
+<p>Check-out: {{ checkout }}</p>
+
+<p>Guests: {{ guests }}</p>
+
+<p>Rooms: {{ rooms }}</p>
+
+<a href="{{ url_for('home') }}">Back to home</a>
+
+            <a href="{{ url_for('home') }}" class="confirmation-button">
+                Back to Home
+            </a>
+
+            <a href="{{ url_for('rooms') }}" class="confirmation-link">
+                View available rooms
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        {% include 'footer.html' %}
+    </footer>
+
+</div>
+
+</body>
+</html>
