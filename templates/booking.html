@@ -2,62 +2,204 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Booking - Jarir Hotel</title>
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/style.css') }}">
+
 </head>
 
-<body>
 
-<div class="hotel-page">
+<body class="rooms-page">
 
-    <!-- Header -->
+
+    <!-- =========================
+         Header
+    ========================== -->
+
     <header class="header">
 
         <a href="{{ url_for('home') }}" class="logo">
+
             <div class="logo-box">
-                <div class="logo-j">J</div>
-                <div class="logo-text-small">JARIR HOTEL</div>
+
+                <span class="logo-j">J</span>
+
+                <span class="logo-text-small">
+                    JARIR
+                </span>
+
+                <span class="logo-text-small">
+                    HOTEL
+                </span>
+
             </div>
+
         </a>
+
 
         <div class="hotel-name">
             Jarir Hotel
         </div>
 
+
         <nav class="navigation">
-            <a href="{{ url_for('register') }}">Join</a>
-            <span>|</span>
-            <a href="{{ url_for('login') }}">Sign in</a>
+
+            {% if session.get("logged_in") %}
+
+                <span>
+                    Hello, {{ session.get("user_name") }}
+                </span>
+
+                <span>|</span>
+
+                <a href="{{ url_for('logout') }}">
+                    Sign out
+                </a>
+
+            {% else %}
+
+                <a href="{{ url_for('register') }}">
+                    Join
+                </a>
+
+                <span>|</span>
+
+                <a href="{{ url_for('login') }}">
+                    Sign in
+                </a>
+
+            {% endif %}
+
         </nav>
 
     </header>
 
 
-    <!-- Booking -->
+
+    <!-- =========================
+         Booking
+    ========================== -->
+
     <main class="booking-container">
 
         <div class="booking-box">
 
-            <h1>Complete your booking</h1>
+
+            <h1>
+                Complete your booking
+            </h1>
+
 
             <p class="booking-intro">
-                Please check your booking information before confirming.
+                Please check your room and booking information.
             </p>
 
 
-            <form action="{{ url_for('booking_confirmation') }}" method="GET">
-              <input type="hidden" name="room_id" value="{{ room_id }}">
-              <input type="hidden" name="room_id" value="{{ room_id }}">
+
+            <!-- =========================
+                 Selected Room
+            ========================== -->
+
+            <div class="selected-room">
+
+
+                <!-- Room image -->
+
+                {% if room.image %}
+
+                    <img
+                        src="{{ url_for(
+                            'static',
+                            filename='images/' + room.image
+                        ) }}"
+                        alt="{{ room.room_type }}"
+                        class="booking-room-image"
+                    >
+
+                {% elif room.image1 %}
+
+                    <img
+                        src="{{ url_for(
+                            'static',
+                            filename='images/' + room.image1
+                        ) }}"
+                        alt="{{ room.room_type }}"
+                        class="booking-room-image"
+                    >
+
+                {% endif %}
+
+
+
+                <!-- Room information -->
+
+                <div class="selected-room-info">
+
+                    <h2>
+                        {{ room.room_type }}
+                    </h2>
+
+
+                    <p>
+                        Room {{ room.room_number }}
+                    </p>
+
+
+                    <div class="booking-room-price">
+
+                        <strong>
+                            €{{ room.price }}
+                        </strong>
+
+                        <span>
+                            per night
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 Booking Form
+            ========================== -->
+
+            <form
+                action="{{ url_for('booking_confirmation') }}"
+                method="POST"
+            >
+
+
+                <!-- Selected room -->
+
+                <input
+                    type="hidden"
+                    name="room_id"
+                    value="{{ room.id }}"
+                >
+
+
+
                 <!-- Dates -->
+
                 <div class="booking-row">
 
+
                     <div class="booking-group">
-                        <label for="checkin">Check in</label>
+
+                        <label for="checkin">
+                            Check in
+                        </label>
 
                         <input
                             type="date"
@@ -65,11 +207,16 @@
                             name="checkin"
                             required
                         >
+
                     </div>
 
 
+
                     <div class="booking-group">
-                        <label for="checkout">Check out</label>
+
+                        <label for="checkout">
+                            Check out
+                        </label>
 
                         <input
                             type="date"
@@ -77,19 +224,27 @@
                             name="checkout"
                             required
                         >
+
                     </div>
 
                 </div>
 
 
+
                 <!-- Guests -->
+
                 <div class="booking-group">
 
                     <label for="guests">
                         Number of guests
                     </label>
 
-                    <select id="guests" name="guests" required>
+
+                    <select
+                        id="guests"
+                        name="guests"
+                        required
+                    >
 
                         <option value="">
                             Select guests
@@ -124,14 +279,21 @@
                 </div>
 
 
-                <!-- Rooms -->
+
+                <!-- Number of rooms -->
+
                 <div class="booking-group">
 
                     <label for="rooms">
                         Number of rooms
                     </label>
 
-                    <select id="rooms" name="rooms" required>
+
+                    <select
+                        id="rooms"
+                        name="rooms"
+                        required
+                    >
 
                         <option value="">
                             Select rooms
@@ -154,26 +316,47 @@
                 </div>
 
 
+
                 <!-- Confirm -->
+
                 <button
                     type="submit"
-                    class="booking-button">
-                    Confirm Booking
+                    class="booking-button"
+                >
+                    Continue to confirmation
                 </button>
 
+
             </form>
+
+
+            <!-- Back -->
+
+            <a
+                href="{{ url_for('room_details', room_id=room.id) }}"
+                class="back-button"
+            >
+                ← Back to room
+            </a>
+
 
         </div>
 
     </main>
- 
 
-    <!-- Footer -->
+
+
+    <!-- =========================
+         Footer
+    ========================== -->
+
     <footer class="footer">
+
         {% include 'footer.html' %}
+
     </footer>
 
-</div>
 
 </body>
+
 </html>

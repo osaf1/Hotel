@@ -5,13 +5,11 @@ function searchRooms() {
     const occupancy = document.getElementById("occupancy").value;
     const rooms = document.getElementById("rooms").value;
 
-
     // Check-in controleren
     if (checkin === "") {
         alert("Please select a check-in date.");
         return;
     }
-
 
     // Check-out controleren
     if (checkout === "") {
@@ -19,13 +17,11 @@ function searchRooms() {
         return;
     }
 
-
     // Occupancy controleren
     if (occupancy === "") {
         alert("Please select the number of guests.");
         return;
     }
-
 
     // Aantal kamers controleren
     if (rooms === "") {
@@ -33,13 +29,11 @@ function searchRooms() {
         return;
     }
 
-
     // Check-out moet na check-in zijn
     if (checkout <= checkin) {
         alert("Check-out date must be after the check-in date.");
         return;
     }
-
 
     // Naar de rooms pagina
     window.location.href = "/rooms";
@@ -100,3 +94,45 @@ function closeImage() {
     modal.style.display = "none";
 
 }
+
+
+/* =========================
+   Room Details images
+========================= */
+
+function changeDetailsImage(image) {
+
+    document.getElementById("mainRoomImage").src = image.src;
+
+}
+
+
+/* =========================
+   Room Details image zoom
+========================= */
+
+function openRoomDetailsImage(src) {
+
+    document.getElementById(
+        "roomDetailsZoomedImage"
+    ).src = src;
+
+    document.getElementById(
+        "roomDetailsModal"
+    ).style.display = "flex";
+
+}
+
+
+/* =========================
+   Close Room Details zoom
+========================= */
+
+function closeRoomDetailsImage() {
+
+    document.getElementById(
+        "roomDetailsModal"
+    ).style.display = "none";
+
+}
+

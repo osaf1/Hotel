@@ -1473,3 +1473,296 @@ body {
     font-size: 12px;
   }
 }
+
+/* =========================
+   Room Details
+========================= */
+
+.room-details-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 50px auto;
+}
+
+.back-button {
+  display: inline-block;
+  margin-bottom: 25px;
+  color: #171717;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.back-button:hover {
+  text-decoration: underline;
+}
+
+
+.room-details-card {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 45px;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+}
+
+
+.room-details-main-image {
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 10px;
+  cursor: zoom-in;
+}
+
+.room-details-main-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.room-details-thumbnails {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.room-details-thumbnails img {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.room-details-thumbnails img:hover {
+  transform: scale(1.03);
+}
+
+
+.room-details-info {
+  padding: 15px 10px;
+}
+
+.room-details-label {
+  font-size: 13px;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.room-details-info h1 {
+  font-size: 40px;
+  margin-bottom: 8px;
+}
+
+.room-details-number {
+  margin-bottom: 25px;
+}
+
+
+.room-details-price {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 25px;
+}
+
+.room-details-price strong {
+  font-size: 30px;
+}
+
+.room-details-price span {
+  font-size: 15px;
+}
+
+
+.room-details-line {
+  height: 1px;
+  background: #ddd;
+  margin: 25px 0;
+}
+
+
+.room-details-info h2 {
+  margin-bottom: 12px;
+}
+
+.room-details-description {
+  line-height: 1.7;
+  color: #555;
+}
+
+
+.room-details-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin: 30px 0;
+}
+
+.room-details-features div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.room-details-features strong {
+  font-size: 14px;
+}
+
+.room-details-features span {
+  font-size: 13px;
+  color: #666;
+}
+
+
+.room-details-book {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+}
+
+
+/* Image zoom */
+
+.room-details-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  align-items: center;
+  justify-content: center;
+}
+
+.room-details-modal img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
+.room-details-close {
+  position: absolute;
+  top: 25px;
+  right: 40px;
+  color: white;
+  font-size: 45px;
+  cursor: pointer;
+}
+
+
+/* Room actions */
+
+.room-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.details-button {
+  text-decoration: none;
+  padding: 10px 15px;
+  border: 1px solid #171717;
+  color: #171717;
+  border-radius: 5px;
+}
+
+.details-button:hover {
+  background: #171717;
+  color: white;
+}
+
+
+/* Responsive */
+
+@media (max-width: 800px) {
+
+  .room-details-card {
+      grid-template-columns: 1fr;
+  }
+
+  .room-details-main-image {
+      height: 350px;
+  }
+
+  .room-details-info h1 {
+      font-size: 30px;
+  }
+
+  .room-details-features {
+      grid-template-columns: 1fr;
+  }
+
+}
+
+
+@media (max-width: 500px) {
+
+  .room-details-thumbnails {
+      grid-template-columns: repeat(2, 1fr);
+  }
+
+  .room-details-main-image {
+      height: 280px;
+  }
+
+}
+.room-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+/* =========================
+   Language dropdown
+========================= */
+
+.language-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.language-button {
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 8px 12px;
+}
+
+.language-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  min-width: 140px;
+  background: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+}
+
+.language-menu a {
+  display: block;
+  padding: 10px 14px;
+  color: #222;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.language-menu a:hover {
+  background: #f2f2f2;
+}
+
+.language-dropdown:hover .language-menu {
+  display: block;
+}
+

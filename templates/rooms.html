@@ -200,30 +200,25 @@
                     <!-- Bottom section -->
                     <div class="room-bottom">
 
-
-                        <!-- Price -->
                         <div class="room-price">
-
                             €{{ room.price }}
-
-                            <span>
-                                per night
-                            </span>
-
+                            <span>per night</span>
                         </div>
+                    
+                        <div class="room-actions">
 
-
-                        <!-- Book -->
-                        <a
-                            href="{{ url_for(
-                                'booking',
-                                room_id=room.id
-                            ) }}"
-                            class="book-button"
-                        >
-                            Book
-                        </a>
-
+                            <a href="{{ url_for('room_details', room_id=room.id) }}"
+                               class="book-button">
+                                View details
+                            </a>
+                        
+                            <a href="{{ url_for('booking', room_id=room.id) }}"
+                               class="book-button">
+                                Book now
+                            </a>
+                        
+                        </div>
+                    
                     </div>
 
                 </div>

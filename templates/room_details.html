@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ room.room_type }} - Jarir Hotel</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="rooms-page">
+
+    <!-- =========================
+         Header
+    ========================= -->
+
+    <header class="header">
+
+        <a href="{{ url_for('home') }}" class="logo">
+            <div class="logo-box">
+                <span class="logo-j">J</span>
+                <span class="logo-text-small">JARIR</span>
+                <span class="logo-text-small">HOTEL</span>
+            </div>
+        </a>
+
+        <div class="hotel-name">
+            Jarir Hotel
+        </div>
+
+        <nav class="navigation">
+
+            {% if session.get("logged_in") %}
+
+                <span>
+                    Hello, {{ session.get("user_name") }}
+                </span>
+
+                <span>|</span>
+
+                <a href="{{ url_for('logout') }}">
+                    Sign out
+                </a>
+
+            {% else %}
+
+                <a href="{{ url_for('register') }}">
+                    Join
+                </a>
+
+                <span>|</span>
+
+                <a href="{{ url_for('login') }}">
+                    Sign in
+                </a>
+
+            {% endif %}
+
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         Room Details
+    ========================= -->
+
+    <main class="room-details-container">
+
+        <a href="{{ url_for('rooms') }}" class="back-button">
+            ← Back to rooms
+        </a>
+
+
+        <div class="room-details-card">
+
+
+            <!-- =========================
+                 Room Gallery
+            ========================= -->
+
+            <div class="room-gallery">
+
+                <!-- Main image -->
+
+                <div class="room-details-main-image">
+
+                    {% if room.image %}
+
+                        <img
+                            id="mainRoomImage"
+                            src="{{ url_for(
+                                'static',
+                                filename='images/' + room.image
+                            ) }}"
+                            alt="{{ room.room_type }}"
+                            onclick="openRoomDetailsImage(this.src)"
+                        >
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- Thumbnails -->
+
+                <div class="room-details-thumbnails">
+
+                    {% if room.image %}
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='images/' + room.image
+                            ) }}"
+                            alt="{{ room.room_type }}"
+                            onclick="changeDetailsImage(this)"
+                            class="active-thumbnail"
+                        >
+
+                    {% endif %}
+
+
+                    {% if room.image1 %}
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='images/' + room.image1
+                            ) }}"
+                            alt="{{ room.room_type }}"
+                            onclick="changeDetailsImage(this)"
+                        >
+
+                    {% endif %}
+
+
+                    {% if room.image2 %}
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='images/' + room.image2
+                            ) }}"
+                            alt="{{ room.room_type }}"
+                            onclick="changeDetailsImage(this)"
+                        >
+
+                    {% endif %}
+
+
+                    {% if room.image3 %}
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='images/' + room.image3
+                            ) }}"
+                            alt="{{ room.room_type }}"
+                            onclick="changeDetailsImage(this)"
+                        >
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 Room Information
+            ========================= -->
+
+            <div class="room-details-info">
+
+                <p class="room-details-label">
+                    JARIR HOTEL
+                </p>
+
+
+                <h1>
+                    {{ room.room_type }}
+                </h1>
+
+
+                <p class="room-details-number">
+                    Room {{ room.room_number }}
+                </p>
+
+
+                <div class="room-details-price">
+
+                    <strong>
+                        €{{ room.price }}
+                    </strong>
+
+                    <span>
+                        per night
+                    </span>
+
+                </div>
+
+
+                <div class="room-details-line"></div>
+
+
+                <h2>
+                    About this room
+                </h2>
+
+
+                <p class="room-details-description">
+                    {{ room.description }}
+                </p>
+
+
+                <!-- Features -->
+
+                <div class="room-details-features">
+
+                    <div>
+                        <strong>Guests</strong>
+                        <span>Up to 6 guests</span>
+                    </div>
+
+                    <div>
+                        <strong>Room</strong>
+                        <span>Private room</span>
+                    </div>
+
+                    <div>
+                        <strong>Hotel</strong>
+                        <span>Jarir Hotel</span>
+                    </div>
+
+                </div>
+
+
+                <!-- Booking -->
+
+                <a
+                    href="{{ url_for(
+                        'booking',
+                        room_id=room.id
+                    ) }}"
+                    class="booking-button room-details-book"
+                >
+                    Book this room
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         Image Zoom
+    ========================= -->
+
+    <div
+        id="roomDetailsModal"
+        class="room-details-modal"
+        onclick="closeRoomDetailsImage()"
+    >
+
+        <button
+            class="room-details-close"
+            onclick="closeRoomDetailsImage()"
+        >
+            &times;
+        </button>
+
+
+        <img
+            id="roomDetailsZoomedImage"
+            src=""
+            alt="Large room image"
+            onclick="event.stopPropagation()"
+        >
+
+    </div>
+
+
+    <!-- =========================
+         Footer
+    ========================= -->
+
+    <footer class="footer">
+
+        {% include 'footer.html' %}
+
+    </footer>
+
+
+    <!-- =========================
+         JavaScript
+    ========================= -->
+
+    <script>
+
+        function changeDetailsImage(image) {
+
+            const mainImage =
+                document.getElementById("mainRoomImage");
+
+            if (!mainImage) {
+                return;
+            }
+
+            mainImage.src = image.src;
+
+
+            // Active thumbnail
+
+            const thumbnails =
+                document.querySelectorAll(
+                    ".room-details-thumbnails img"
+                );
+
+            thumbnails.forEach(function(thumbnail) {
+
+                thumbnail.classList.remove(
+                    "active-thumbnail"
+                );
+
+            });
+
+            image.classList.add(
+                "active-thumbnail"
+            );
+        }
+
+
+        function openRoomDetailsImage(src) {
+
+            const modal =
+                document.getElementById(
+                    "roomDetailsModal"
+                );
+
+            const zoomedImage =
+                document.getElementById(
+                    "roomDetailsZoomedImage"
+                );
+
+            zoomedImage.src = src;
+
+            modal.style.display = "flex";
+        }
+
+
+        function closeRoomDetailsImage() {
+
+            const modal =
+                document.getElementById(
+                    "roomDetailsModal"
+                );
+
+            modal.style.display = "none";
+        }
+
+
+        // ESC = close image
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (event.key === "Escape") {
+
+                    closeRoomDetailsImage();
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

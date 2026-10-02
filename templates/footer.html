@@ -32,12 +32,33 @@
 
   </div>
 
-  <div class="footer-bottom">
-      <span>© 2026 Jarir Hotel. All rights reserved.</span>
+  <div class="language-dropdown">
 
-      <button class="language-button" onclick="changeLanguage()">
-          EN
-      </button>
-  </div>
+    <button class="language-button">
+        {{ session.get("language", "en").upper() }}
+        ▾
+    </button>
+
+    <div class="language-menu">
+
+        <a href="{{ url_for('change_language', language='en') }}">
+            English
+        </a>
+
+        <a href="{{ url_for('change_language', language='nl') }}">
+            Nederlands
+        </a>
+
+        <a href="{{ url_for('change_language', language='fa') }}">
+            دری
+        </a>
+
+        <a href="{{ url_for('change_language', language='ps') }}">
+            پښتو
+        </a>
+
+    </div>
+
+</div>
 
 </footer>

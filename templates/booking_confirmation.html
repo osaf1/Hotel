@@ -39,19 +39,6 @@
 
 
     <!-- Booking Confirmation -->
-    <form action="{{ url_for('booking_confirmation') }}" method="POST">
-
-      <input type="hidden" name="room_id" value="{{ room_id }}">
-      <input type="hidden" name="checkin" value="{{ checkin }}">
-      <input type="hidden" name="checkout" value="{{ checkout }}">
-      <input type="hidden" name="guests" value="{{ guests }}">
-      <input type="hidden" name="rooms" value="{{ rooms }}">
-  
-      <button type="submit" class="booking-button">
-          Confirm Booking
-      </button>
-  
-  </form>
     <main class="booking-confirmation-container">
 
         <div class="booking-confirmation-box">
@@ -95,6 +82,11 @@
                     <strong>{{ guests }}</strong>
                 </div>
 
+                <div class="booking-detail">
+                    <span>Number of rooms</span>
+                    <strong>{{ rooms }}</strong>
+                </div>
+
             </div>
 
 
@@ -104,6 +96,7 @@
             </p>
 
 
+            <!-- Back to Home button -->
             <a href="{{ url_for('home') }}"
                class="confirmation-button">
                 Back to Home
